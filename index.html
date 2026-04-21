@@ -103,7 +103,6 @@
     <video id="video" autoplay playsinline></video>
     <canvas id="captureCanvas" hidden></canvas>
     <div>
-      <button id="openCameraBtn">Open Camera</button>
       <button id="captureBtn" disabled>Take Picture</button>
     </div>
   </div>
@@ -154,6 +153,10 @@ let capturedImage = null;
 function showPage(id){
   Object.values(pages).forEach(p=>p.classList.remove('active'));
   pages[id].classList.add('active');
+
+  if(id === 'page2'){
+    startCamera(); // auto start camera
+  }
 }
 
 async function startCamera(){
@@ -167,17 +170,43 @@ function stopCamera(){
 }
 
 function capture(){
-  captureCanvas.width = video.videoWidth;
-  captureCanvas.height = video.videoHeight;
-  captureCanvas.getContext('2d').drawImage(video,0,0);
+  let countdown = 5;
 
-  capturedImage = new Image();
-  capturedImage.src = captureCanvas.toDataURL();
+  const countdownEl = document.createElement("div");
+  countdownEl.style.position = "absolute";
+  countdownEl.style.top = "50%";
+  countdownEl.style.left = "50%";
+  countdownEl.style.transform = "translate(-50%, -50%)";
+  countdownEl.style.fontSize = "6rem";
+  countdownEl.style.textShadow = "0 0 30px rgba(0,0,0,0.9)";
+  countdownEl.style.fontWeight = "bold";
+  countdownEl.style.color = "white";
+  document.body.appendChild(countdownEl);
 
-  capturedImage.onload = ()=>{
-    stopCamera();
-    showPage('page3');
-  };
+  countdownEl.innerText = countdown;
+
+  const timer = setInterval(() => {
+    countdown--;
+    countdownEl.innerText = countdown;
+
+    if (countdown === 0) {
+      clearInterval(timer);
+      countdownEl.remove();
+
+      // take photo AFTER countdown
+      captureCanvas.width = video.videoWidth;
+      captureCanvas.height = video.videoHeight;
+      captureCanvas.getContext('2d').drawImage(video,0,0);
+
+      capturedImage = new Image();
+      capturedImage.src = captureCanvas.toDataURL();
+
+      capturedImage.onload = ()=>{
+        stopCamera();
+        showPage('page3');
+      };
+    }
+  }, 1000);
 }
 
 function startProcessing(){
@@ -252,7 +281,6 @@ document.getElementById('beginBtn').onclick=()=>{
   audio.play().catch(()=>{});
   showPage('page2');
 };
-document.getElementById('openCameraBtn').onclick=startCamera;
 document.getElementById('captureBtn').onclick=capture;
 document.getElementById('showResultBtn').onclick=()=>{
   createBlur();
