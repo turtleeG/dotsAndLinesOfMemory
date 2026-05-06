@@ -81,6 +81,11 @@
     @keyframes dots {
       0%{content:"";}25%{content:".";}50%{content:"..";}75%{content:"...";}100%{content:"";}
     }
+
+    #printCaption {
+      display: none;
+    }
+    
     @media print {
       @page {
         size: 72mm auto;
@@ -108,7 +113,7 @@
         max-width: 100%;
         height: auto;
         border-radius: 0 !important;
-        padding-bottom: 1000px;
+        padding-bottom: 1500px;
       }
     }
     
@@ -117,7 +122,7 @@
     visibility: visible !important;
 
     position: fixed;
-    bottom: 30px;
+    top: 20px;
     left: 0;
 
     width: 100%;
@@ -126,6 +131,8 @@
     font-size: 14px;
     color: black;
     font-family: Arial, sans-serif;
+
+    z-index: 9999;
   }
   </style>
 </head>
