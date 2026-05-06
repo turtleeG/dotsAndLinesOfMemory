@@ -108,9 +108,25 @@
         max-width: 100%;
         height: auto;
         border-radius: 0 !important;
-        padding-bottom: 120px;
+        padding-bottom: 1000px;
       }
     }
+    
+    #printCaption {
+    display: block !important;
+    visibility: visible !important;
+
+    position: fixed;
+    bottom: 30px;
+    left: 0;
+
+    width: 100%;
+    text-align: center;
+
+    font-size: 14px;
+    color: black;
+    font-family: Arial, sans-serif;
+  }
   </style>
 </head>
 <body>
@@ -153,6 +169,9 @@
     <h2></h2>
     <canvas id="resultCanvas"></canvas>
     <img id="printImage" style="display:none;" />
+    <div id="printCaption">
+      Emotional traces persist.
+    </div>
     <div>
       <button id="printBtn">Print</button>
       <button id="startAgainBtn">Start Again</button>
