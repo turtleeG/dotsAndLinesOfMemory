@@ -112,6 +112,11 @@
         height: auto;
         border-radius: 0 !important;
       }
+      #printSpacer {
+        display: block !important;
+        visibility: visible !important;
+        height: 80mm;
+      }
       #bottomSpace {
         display: block !important;
         visibility: visible !important;
@@ -119,11 +124,6 @@
         height: 60mm;
         color: black;
         font-size: 14px;
-      }
-      #printSpacer {
-        display: block !important;
-        visibility: visible !important;
-        height: 80mm;
       }
     }
   </style>
@@ -168,10 +168,10 @@
     <h2></h2>
     <canvas id="resultCanvas"></canvas>
     <img id="printImage" style="display:none;" />
+    <div id="printSpacer"></div>
     <div id="bottomSpace">
       Emotional traces persist.
     </div>
-    <div id="printSpacer"></div>
     <div>
       <button id="printBtn">Print</button>
       <button id="startAgainBtn">Start Again</button>
