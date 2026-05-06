@@ -81,13 +81,10 @@
     @keyframes dots {
       0%{content:"";}25%{content:".";}50%{content:"..";}75%{content:"...";}100%{content:"";}
     }
-    #printSpacer,
     #bottomSpace {
       display: none;
     }
-    
     @media print {
-    
       @page {
         size: 72mm auto;
         margin: 0;
@@ -106,46 +103,27 @@
       #printImage {
         display: block !important;
         visibility: visible !important;
-    
         position: fixed;
+        margin-top: 0;
         left: 0;
         top: 0;
-    
         width: 100%;
         max-width: 100%;
         height: auto;
-    
         border-radius: 0 !important;
       }
-    
       #printSpacer {
         display: block !important;
         visibility: visible !important;
-    
-        position: fixed;
-        top: 5mm;
-        left: 0;
-    
-        width: 100%;
-    
-        text-align: center;
-        color: black;
-        font-size: 14px;
-        font-family: Arial, sans-serif;
-    
-        z-index: 9999;
+        height: 80mm;
       }
-    
       #bottomSpace {
         display: block !important;
         visibility: visible !important;
-    
-        position: fixed;
-        bottom: -60mm;
-        left: 0;
-    
-        width: 100%;
-        height: 60mm;
+
+        /* height: 60mm; */
+        color: black;
+        font-size: 14px;
       }
     }
   </style>
@@ -190,11 +168,10 @@
     <h2></h2>
     <canvas id="resultCanvas"></canvas>
     <img id="printImage" style="display:none;" />
-    <div id="printSpacer">
+    <div id="printSpacer"></div>
+    <div id="bottomSpace">
       Emotional traces persist.
     </div>
-    
-    <div id="bottomSpace"></div>
     <div>
       <button id="printBtn">Print</button>
       <button id="startAgainBtn">Start Again</button>
