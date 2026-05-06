@@ -108,7 +108,11 @@
         max-width: 100%;
         height: auto;
         border-radius: 0 !important;
-        padding-bottom: 5000px;
+      }
+      #printSpacer {
+        display: block !important;
+        visibility: visible !important;
+        height: 80mm;
       }
     }
   </style>
@@ -153,6 +157,7 @@
     <h2></h2>
     <canvas id="resultCanvas"></canvas>
     <img id="printImage" style="display:none;" />
+    <div id="printSpacer"></div>
     <div>
       <button id="printBtn">Print</button>
       <button id="startAgainBtn">Start Again</button>
