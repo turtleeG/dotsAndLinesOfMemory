@@ -103,7 +103,7 @@
         position: fixed;
         left: 0;
         top: 0;
-        width: 72mm;
+        width: 68mm;
         height: auto;
         border-radius: 0 !important;
       }
@@ -271,12 +271,13 @@ function createBlur(){
   ctx.drawImage(capturedImage, 0, 0);
 
   // 1. Lower contrast + wash out colors
-  ctx.fillStyle = 'rgba(255,255,255,0.25)';
+  ctx.fillStyle = 'rgba(0,0,0,0.15)';
   ctx.fillRect(0, 0, resultCanvas.width, resultCanvas.height);
 
   // 2. Add slight desaturation
-  ctx.fillStyle = 'rgba(120,120,120,0.15)';
-  ctx.fillRect(0, 0, resultCanvas.width, resultCanvas.height);
+  ctx.filter = 'contrast(1.35) brightness(0.8)';
+  ctx.drawImage(capturedImage, 0, 0);
+  ctx.filter = 'none';
 
   // 3. Add feathered faded patches
   for(let i = 0; i < 7; i++){
