@@ -83,7 +83,7 @@
     }
     @media print {
       @page {
-        size: 80mm auto;
+        size: 72mm auto;
         margin: 0;
       }
     
@@ -94,15 +94,16 @@
       }
     
       body * {
-        visibility: hidden;
+        visibility: hidden !important;
       }
     
-      #resultCanvas {
-        visibility: visible;
-        position: absolute;
+      #printImage {
+        display: block !important;
+        visibility: visible !important;
+        position: fixed;
         left: 0;
         top: 0;
-        width: 80mm;
+        width: 72mm;
         height: auto;
         border-radius: 0 !important;
       }
@@ -148,6 +149,7 @@
   <div class="card">
     <h2></h2>
     <canvas id="resultCanvas"></canvas>
+    <img id="printImage" style="display:none;" />
     <div>
       <button id="printBtn">Print</button>
       <button id="startAgainBtn">Start Again</button>
@@ -313,7 +315,14 @@ document.getElementById('showResultBtn').onclick=()=>{
   showPage('page4');
 };
 
-document.getElementById('printBtn').onclick=()=>window.print();
+document.getElementById('printBtn').onclick = () => {
+  const printImage = document.getElementById('printImage');
+  printImage.src = resultCanvas.toDataURL('image/png');
+
+  setTimeout(() => {
+    window.print();
+  }, 300);
+};
 
 document.getElementById('startAgainBtn').onclick=()=>{
   showPage('page2');
